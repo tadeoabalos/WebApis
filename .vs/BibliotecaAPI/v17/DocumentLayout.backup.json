@@ -1,0 +1,130 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|c:\\users\\abalos desarrollo\\source\\repos\\bibliotecaapi\\bibliotecaapi\\repositoriovaloresoracle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|solutionrelative:bibliotecaapi\\repositoriovaloresoracle.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|c:\\users\\abalos desarrollo\\source\\repos\\bibliotecaapi\\bibliotecaapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|solutionrelative:bibliotecaapi\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|c:\\users\\abalos desarrollo\\source\\repos\\bibliotecaapi\\bibliotecaapi\\controllers\\valorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|solutionrelative:bibliotecaapi\\controllers\\valorescontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|c:\\users\\abalos desarrollo\\source\\repos\\bibliotecaapi\\bibliotecaapi\\repositoriovalores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|solutionrelative:bibliotecaapi\\repositoriovalores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|c:\\users\\abalos desarrollo\\source\\repos\\bibliotecaapi\\bibliotecaapi\\irepositoriovalores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|solutionrelative:bibliotecaapi\\irepositoriovalores.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|c:\\users\\abalos desarrollo\\source\\repos\\bibliotecaapi\\bibliotecaapi\\entidades\\valor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{1FBDF69A-0BCF-49FF-B7E9-69BCD25AB9AE}|BibliotecaAPI\\BibliotecaAPI.csproj|solutionrelative:bibliotecaapi\\entidades\\valor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 212,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "RepositorioValoresOracle.cs",
+              "DocumentMoniker": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\RepositorioValoresOracle.cs",
+              "RelativeDocumentMoniker": "BibliotecaAPI\\RepositorioValoresOracle.cs",
+              "ToolTip": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\RepositorioValoresOracle.cs*",
+              "RelativeToolTip": "BibliotecaAPI\\RepositorioValoresOracle.cs*",
+              "ViewState": "AgIAAAAAAAAAAAAAAAD4vw0AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T16:22:44.163Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\Program.cs",
+              "RelativeDocumentMoniker": "BibliotecaAPI\\Program.cs",
+              "ToolTip": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\Program.cs",
+              "RelativeToolTip": "BibliotecaAPI\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAABLAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T16:19:27.046Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IRepositorioValores.cs",
+              "DocumentMoniker": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\IRepositorioValores.cs",
+              "RelativeDocumentMoniker": "BibliotecaAPI\\IRepositorioValores.cs",
+              "ToolTip": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\IRepositorioValores.cs",
+              "RelativeToolTip": "BibliotecaAPI\\IRepositorioValores.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T16:16:31.636Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RepositorioValores.cs",
+              "DocumentMoniker": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\RepositorioValores.cs",
+              "RelativeDocumentMoniker": "BibliotecaAPI\\RepositorioValores.cs",
+              "ToolTip": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\RepositorioValores.cs",
+              "RelativeToolTip": "BibliotecaAPI\\RepositorioValores.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAA5AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T16:15:52.247Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ValoresController.cs",
+              "DocumentMoniker": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\Controllers\\ValoresController.cs",
+              "RelativeDocumentMoniker": "BibliotecaAPI\\Controllers\\ValoresController.cs",
+              "ToolTip": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\Controllers\\ValoresController.cs",
+              "RelativeToolTip": "BibliotecaAPI\\Controllers\\ValoresController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T15:08:00.728Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Valor.cs",
+              "DocumentMoniker": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\Entidades\\Valor.cs",
+              "RelativeDocumentMoniker": "BibliotecaAPI\\Entidades\\Valor.cs",
+              "ToolTip": "C:\\Users\\Abalos Desarrollo\\source\\repos\\BibliotecaAPI\\BibliotecaAPI\\Entidades\\Valor.cs",
+              "RelativeToolTip": "BibliotecaAPI\\Entidades\\Valor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T15:47:44.224Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
