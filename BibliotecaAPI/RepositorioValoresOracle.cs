@@ -4,14 +4,24 @@ namespace BibliotecaAPI
 {
     public class RepositorioValoresOracle : IRepositorioValores
     {
-        public IEnumerable<Valor> ObtenerValores()
+        private List<Valor> _valores; //ESTADO DE LA CLASE
+		public RepositorioValoresOracle()
+		{
+			_valores = new List<Valor>
+			{
+				new Valor{ Id = 3, Nombre="Valor Oracle 1"},
+				new Valor{ Id = 4, Nombre="Valor Oracle 2"},
+				new Valor{ Id = 5, Nombre="Valor Oracle 3"}
+			};
+		}
+		public IEnumerable<Valor> ObtenerValores()
         {
-            return new List<Valor>
-            {
-                new Valor{ Id = 3, Nombre="Valor Oracle 1"},
-                new Valor{ Id = 4, Nombre="Valor Oracle 2"},
-                new Valor{ Id = 5, Nombre="Valor Oracle 3"}
-            };
+            return _valores;
         }
+
+		public void InsertarValor(Valor valor) 
+		{
+			_valores.Add(valor);
+		}
     }
 }

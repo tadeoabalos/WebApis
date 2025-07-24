@@ -8,7 +8,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // AREA DE SERVICIOS
 
-builder.Services.AddTransient<IRepositorioValores, RepositorioValoresOracle>();
+builder.Services.AddTransient<ServicioTransient>();
+builder.Services.AddScoped<ServicioScoped>();
+builder.Services.AddSingleton<ServicioSingleton>();
+
+builder.Services.AddSingleton<IRepositorioValores, RepositorioValoresOracle>();
 
 builder.Services.AddControllers().AddJsonOptions(opciones =>
 opciones.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
