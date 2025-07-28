@@ -1,0 +1,54 @@
+# Archivos de compilación
+bin/
+obj/
+out/
+publish/
+
+# Archivos temporales de Razor, .NET y MSBuild
+*.cache
+*.db-shm
+*.db-wal
+*.vsidx
+*.lock.json
+*.deps.json
+*.pdb
+*.dll
+*.exe
+*.suo
+*.user
+*.csproj.FileListAbsolute.txt
+*.AssemblyInfoInputs.cache
+
+# Archivos de configuración locales
+appsettings.Development.json
+
+# Visual Studio
+.vs/
+.vscode/
+*.sln.docstates
+
+# Copilot
+**/CopilotIndices/
+**/.dtbcache.v2
+
+# Test y cobertura
+TestResults/
+*.coverage
+*.coveragexml
+*.trx
+
+# Archivos NuGet
+*.nupkg
+*.snupkg
+*.nuspec
+*.psmdcp
+
+# Logs
+*.log
+
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Otros directorios que no deben subirse
+node_modules/

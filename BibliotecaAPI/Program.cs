@@ -8,14 +8,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // AREA DE SERVICIOS
 
-builder.Services.AddTransient<ServicioTransient>();
-builder.Services.AddScoped<ServicioScoped>();
-builder.Services.AddSingleton<ServicioSingleton>();
+builder.Services.AddAutoMapper(typeof(Program));
 
-builder.Services.AddSingleton<IRepositorioValores, RepositorioValoresOracle>();
-
-builder.Services.AddControllers().AddJsonOptions(opciones =>
-opciones.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
+builder.Services.AddControllers().AddNewtonsoftJson();
 
 builder.Services.AddDbContext<ApplicationDbContext>(opciones 
     => opciones.UseSqlServer("name=DefaultConnection"));
