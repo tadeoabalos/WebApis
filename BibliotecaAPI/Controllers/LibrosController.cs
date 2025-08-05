@@ -31,7 +31,7 @@ namespace BibliotecaAPI.Controllers
         public async Task<ActionResult<LibroConAutorDTO>> Get(int id)
         {
             var libro = await context.Libros
-                .Include(x => x.Autor)
+                .Include(x => x.Autores)
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (libro is null)
             {
@@ -44,30 +44,78 @@ namespace BibliotecaAPI.Controllers
         [HttpPost]
         public async Task<ActionResult> Post(CreacionLibroDTO creacionLibroDTO)
         {
-            var libro = mapper.Map<Libro>(creacionLibroDTO);
-            var existe = await context.Autores.AnyAsync(x => x.Id == libro.AutorId);
-            if (!existe)
+            if (creacionLibroDTO.AutoresIds is null || creacionLibroDTO.AutoresIds.Count == 0)
             {
-                ModelState.AddModelError(nameof(libro.AutorId), $"El autor de id {libro.AutorId} no existe");
+                ModelState.AddModelError(nameof(creacionLibroDTO.AutoresIds), "No se puede crear un libro sin autores");
                 return ValidationProblem();
             }
+
+            var autoresIdsExisten = await context.Autores
+                .Where(x => creacionLibroDTO.AutoresIds.Contains(x.Id))
+                .Select(x => x.Id).ToListAsync();
+
+            if(autoresIdsExisten.Count != creacionLibroDTO.AutoresIds.Count)
+            {
+                var autoresNoExisten = creacionLibroDTO.AutoresIds.Except(autoresIdsExisten);
+                var autoresNoExistenString = string.Join(",", autoresNoExisten);
+                var mensajeDeError = $"Los siguientes autores no existen: {autoresNoExistenString}";
+                ModelState.AddModelError(nameof(creacionLibroDTO.AutoresIds), mensajeDeError);
+                return ValidationProblem();
+            }
+
+            var libro = mapper.Map<Libro>(creacionLibroDTO);
+            AsignarOrdenAutores(libro);
             context.Add(libro);
             await context.SaveChangesAsync();
             var libroDTO = mapper.Map<LibroDTO>(libro);
 
-            return CreatedAtRoute("ObtenerLibro", new { id = libro.Id}, libroDTO);
+            return CreatedAtRoute("ObtenerLibro", new { id = libro.Id }, libroDTO);
+        }
+
+        private void AsignarOrdenAutores(Libro libro) 
+        {
+            if(libro.Autores is not null)
+            {
+                for(int i = 0; i < libro.Autores.Count; i++)
+                {
+                    libro.Autores[i].Orden = i;
+                }
+            }
         }
         [HttpPut("{id:int}")]
         public async Task<ActionResult<Libro>> Put(int id, CreacionLibroDTO creacionLibroDTO)
         {
-            var libro = mapper.Map<Libro>(creacionLibroDTO);
-            libro.Id = id;
-            var existe = await context.Autores.AnyAsync(x => x.Id == libro.AutorId);
-            if (!existe)
+            if (creacionLibroDTO.AutoresIds is null || creacionLibroDTO.AutoresIds.Count == 0)
             {
-                return BadRequest($"El autor de id {libro.Id} no existe");
+                ModelState.AddModelError(nameof(creacionLibroDTO.AutoresIds), "No se puede crear un libro sin autores");
+                return ValidationProblem();
             }
-            context.Update(libro);
+
+            var autoresIdsExisten = await context.Autores
+                .Where(x => creacionLibroDTO.AutoresIds.Contains(x.Id))
+                .Select(x => x.Id).ToListAsync();
+
+            if (autoresIdsExisten.Count != creacionLibroDTO.AutoresIds.Count)
+            {
+                var autoresNoExisten = creacionLibroDTO.AutoresIds.Except(autoresIdsExisten);
+                var autoresNoExistenString = string.Join(",", autoresNoExisten);
+                var mensajeDeError = $"Los siguientes autores no existen: {autoresNoExistenString}";
+                ModelState.AddModelError(nameof(creacionLibroDTO.AutoresIds), mensajeDeError);
+                return ValidationProblem();
+            }
+
+            var libroDB = await context.Libros
+                            .Include(x => x.Autores)
+                            .FirstOrDefaultAsync(x => x.Id == id);
+
+           if(libroDB is null) 
+            {
+                return NotFound();
+            }
+
+            libroDB = mapper.Map(creacionLibroDTO, libroDB);
+            AsignarOrdenAutores(libroDB);
+            
             await context.SaveChangesAsync();
             return NoContent();
         }
