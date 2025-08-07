@@ -27,13 +27,22 @@ namespace BibliotecaAPI.Utilidades
                 .ForMember(ent => ent.Autores, config =>
                     config.MapFrom(dto => dto.AutoresIds.Select(id => new AutorLibro { AutorId = id })));
 
-            //CreateMap<Libro, LibroConAutorDTO>()
-            //    .ForMember(dto => dto.AutorNombre,
-            //    config => config.MapFrom(ent => MapearNombreYApellidoAutor(ent.Autor!)));
+            CreateMap<Libro, LibroConAutoresDTO>();
 
+            CreateMap<AutorLibro, AutorDTO>()
+                .ForMember(dto => dto.Id, config => config.MapFrom(ent => ent.AutorId))
+                .ForMember(dto => dto.NombreCompleto,
+                    config => config.MapFrom(ent => MapearNombreYApellidoAutor(ent.Autor!)));
+
+            CreateMap<CreacionLibroDTO, AutorLibro>()
+                .ForMember(ent => ent.Libro, config => 
+                config.MapFrom(dto => new Libro { Titulo = dto.Titulo }));
+            
             CreateMap<ComentarioCreacionDTO,  Comentario>();
-            CreateMap<Comentario, ComentarioDTO>();
+            CreateMap<Comentario, ComentarioDTO>()
+                .ForMember(dto => dto.UsuarioEmail, config => config.MapFrom(ent => ent.Usuario!.Email));
             CreateMap<ComentarioPatchDTO, Comentario>().ReverseMap();
+            
         }
 
         private string MapearNombreYApellidoAutor(Autor autor) => $"{autor.Nombres} {autor.Apellidos}";

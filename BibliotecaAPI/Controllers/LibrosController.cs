@@ -2,6 +2,7 @@
 using BibliotecaAPI.Datos;
 using BibliotecaAPI.DTOs;
 using BibliotecaAPI.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -9,6 +10,7 @@ namespace BibliotecaAPI.Controllers
 {
     [ApiController]
     [Route("api/libros")]
+    [Authorize]
     public class LibrosController : ControllerBase
     {
         private readonly ApplicationDbContext context;
@@ -28,16 +30,17 @@ namespace BibliotecaAPI.Controllers
             return librosDTO;
         }
         [HttpGet("{id:int}", Name = "ObtenerLibro")]
-        public async Task<ActionResult<LibroConAutorDTO>> Get(int id)
+        public async Task<ActionResult<LibroConAutoresDTO>> Get(int id)
         {
             var libro = await context.Libros
                 .Include(x => x.Autores)
+                    .ThenInclude( x => x.Autor)
                 .FirstOrDefaultAsync(x => x.Id == id);
             if (libro is null)
             {
                 return NotFound("No se encontro el libro que buscaba");
             }
-            var LibroDTO = mapper.Map<LibroConAutorDTO>(libro);
+            var LibroDTO = mapper.Map<LibroConAutoresDTO>(libro);
 
             return LibroDTO;
         }

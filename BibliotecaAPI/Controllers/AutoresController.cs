@@ -3,6 +3,7 @@ using Azure;
 using BibliotecaAPI.Datos;
 using BibliotecaAPI.DTOs;
 using BibliotecaAPI.Entidades;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -11,6 +12,7 @@ namespace BibliotecaAPI.Controllers
 {
     [ApiController]
     [Route("api/autores")]
+    [Authorize]
     public class AutoresController : ControllerBase
     {
         private readonly ApplicationDbContext context;
@@ -22,7 +24,8 @@ namespace BibliotecaAPI.Controllers
             this.mapper = mapper;
         }
 
-        [HttpGet] 
+        [HttpGet]
+        [AllowAnonymous]
         public async Task<IEnumerable<AutorDTO>> Get() 
         {           
             var autores =  await context.Autores.ToListAsync();
@@ -34,8 +37,8 @@ namespace BibliotecaAPI.Controllers
         public async Task<ActionResult<AutorConLibrosDTO>> Get(int id) 
         {
             var autor = await context.Autores
-                .Include(x => x.Libros)
-                    .ThenInclude( x => x.Libro)
+                .Include(x => x.Libros)    
+                    .ThenInclude(x => x.Libro)
                 .FirstOrDefaultAsync(x => x.Id == id);
 
             if(autor is null) 
