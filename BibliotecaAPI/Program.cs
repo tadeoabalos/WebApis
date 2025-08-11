@@ -13,13 +13,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // AREA DE SERVICIOS
 
+builder.Services.AddDataProtection();
+
 var origenesPermitidos = builder.Configuration.GetSection("origenesPermitidos").Get<string[]>()!;
 
 builder.Services.AddCors(opciones =>
 {
     opciones.AddDefaultPolicy(opcionesCORS =>
     {
-        opcionesCORS.WithOrigins(origenesPermitidos).AllowAnyMethod().AllowAnyHeader();
+        opcionesCORS.WithOrigins(origenesPermitidos).AllowAnyMethod().AllowAnyHeader()
+        .WithExposedHeaders("mi-cabecera");
     });
 });
 
@@ -62,6 +65,13 @@ builder.Services.AddAuthorization(opciones =>
 var app = builder.Build();
 
 //AREA DE MIDDLEWARES
+
+app.Use(async (contexto, next) =>
+{
+    contexto.Response.Headers.Append("mi-cabecera", "valor");
+
+    await next();
+});
 
 app.UseCors();
 
