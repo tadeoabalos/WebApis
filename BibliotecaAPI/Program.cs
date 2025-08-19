@@ -40,6 +40,8 @@ builder.Services.AddIdentityCore<Usuario>()
 builder.Services.AddScoped<UserManager<Usuario>>();
 builder.Services.AddScoped<SignInManager<Usuario>>();
 builder.Services.AddTransient<IServiciosUsuarios, ServiciosUsuarios>();
+builder.Services.AddTransient<IServicioHash, ServicioHash>(); 
+
 builder.Services.AddHttpContextAccessor();
 
 builder.Services.AddAuthentication().AddJwtBearer(opciones =>
