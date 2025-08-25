@@ -3,11 +3,14 @@ using Azure;
 using BibliotecaAPI.Datos;
 using BibliotecaAPI.DTOs;
 using BibliotecaAPI.Entidades;
+using BibliotecaAPI.Servicios;
+using BibliotecaAPI.Utilidades;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.ComponentModel;
+using System.Globalization;
 
 namespace BibliotecaAPI.Controllers
 {
@@ -18,18 +21,22 @@ namespace BibliotecaAPI.Controllers
     {
         private readonly ApplicationDbContext context;
         private readonly IMapper mapper;
-
-        public AutoresController(ApplicationDbContext context, IMapper mapper)
+        private readonly IAlmacenadorArchivos almacenadorArchivos;
+        private const string contenedor = "autores";
+        public AutoresController(ApplicationDbContext context, IMapper mapper, IAlmacenadorArchivos almacenadorArchivos)
         {
             this.context = context;
             this.mapper = mapper;
+            this.almacenadorArchivos = almacenadorArchivos;
         }
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<AutorDTO>> Get() 
+        public async Task<IEnumerable<AutorDTO>> Get([FromQuery] PaginacionDTO paginacionDTO) 
         {           
-            var autores =  await context.Autores.ToListAsync();
+            var queryable = context.Autores.AsQueryable();
+            await HttpContext.InsertarParametrosPaginacionEnCabecera(queryable);
+            var autores = await queryable.OrderBy(x => x.Nombres).Paginar(paginacionDTO).ToListAsync();
             var autoresDTO = mapper.Map<IEnumerable<AutorDTO>>(autores);
             return autoresDTO;
         }
@@ -66,11 +73,45 @@ namespace BibliotecaAPI.Controllers
             var autorDTO = mapper.Map<AutorDTO>(autor);
             return CreatedAtRoute("ObtenerAutor", new {id = autor.Id}, autorDTO);
         }
-        [HttpPut("{id:int}")]
-        public async Task<ActionResult> Put(int id, AutorCreacionDTO autorCreacionDTO) 
+        [HttpPost("con-foto")]
+        public async Task<ActionResult> PostConFoto([FromForm] AutorCreacionDTOConFoto autorCreacionDTO)
         {
             var autor = mapper.Map<Autor>(autorCreacionDTO);
+
+            if(autorCreacionDTO.Foto is not null)
+            {
+                var url = await almacenadorArchivos.Almacenar(contenedor, autorCreacionDTO.Foto);
+                autor.Foto = url;
+            }
+
+            context.Add(autor);
+            await context.SaveChangesAsync();
+            var autorDTO = mapper.Map<AutorDTO>(autor);
+            return CreatedAtRoute("ObtenerAutor", new { id = autor.Id }, autorDTO);
+        }
+        [HttpPut("{id:int}")]
+        public async Task<ActionResult> Put(int id, 
+            [FromForm] AutorCreacionDTOConFoto autorCreacionDTO) 
+        {
+            var existeAutor = await context.Autores.AnyAsync(x => x.Id == id);
+            if (!existeAutor)
+            {
+                return NotFound();
+            }
+            var autor = mapper.Map<Autor>(autorCreacionDTO);
             autor.Id = id;
+
+            if(autorCreacionDTO.Foto is not null)
+            {
+                var fotoActual = await context.Autores
+                    .Where(x => x.Id == id)
+                    .Select(x => x.Foto).FirstAsync();
+
+                var url = await almacenadorArchivos.Editar(fotoActual, contenedor,
+                    autorCreacionDTO.Foto);
+                autor.Foto = url;
+            }
+
             context.Update(autor);
             await context.SaveChangesAsync();
             return NoContent();
@@ -103,12 +144,16 @@ namespace BibliotecaAPI.Controllers
         [HttpDelete("{id:int}")]
         public async Task<ActionResult> Delete(int id)
         {
-            var registrosBorrados = await context.Autores.Where(x => x.Id == id).ExecuteDeleteAsync();
-            if (registrosBorrados == 0) 
+            var autor = await context.Autores.FirstOrDefaultAsync(x => x.Id = id);
+            if (autor == null)
             {
-                return NotFound("No se encontro el registro a borrar");
+                return NotFound();
             }
-            
+
+            context.Remove(autor);
+            await context.SaveChangesAsync();
+            await almacenadorArchivos.Borrar(autor.foto, contenedor);
+
             return NoContent();
         }
     }
