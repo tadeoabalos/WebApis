@@ -5,7 +5,7 @@
         private const int CantidadMaximaRecordPorPaginas = 50;
 
         public int Pagina { get; init; } = Math.Max(1, Pagina);
-        public int RecordsPorPagina { get; init; } = Math.Clamp(RecordsPorPagina, 1, CantidadMaximaRecordPorPaginas);
-
+        public int RecordsPorPagina { get; init; } = 
+            Math.Clamp(RecordsPorPagina, 1, CantidadMaximaRecordPorPaginas);
     }
 }
